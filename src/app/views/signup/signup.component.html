@@ -1,1 +1,122 @@
-<p>signup works!</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+    <mat-card-title>Roaminate</mat-card-title>
+  </mat-card-header>
+
+  <!-- email and password-->
+  <br />
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <h2>Email</h2>
+      <input
+        [(ngModel)]="email"
+        type="email"
+        matInput
+        [formControl]="emailFormControl"
+        placeholder="Ex. pat@example.com"
+      />
+      <!-- @if (emailFormControl.hasError('email') &&
+        !emailFormControl.hasError('required')) { -->
+      <mat-error
+        *ngIf="
+          emailFormControl.hasError('email') &&
+          !emailFormControl.hasError('required')
+        "
+        >Please enter a valid email address</mat-error
+      >
+
+      <!-- @if (emailFormControl.hasError('required')) { -->
+      <mat-error *ngIf="emailFormControl.hasError('required')"
+        >Email is <strong>required</strong></mat-error
+      >
+    </mat-form-field>
+
+    <!-- full name-->
+    <mat-form-field class="example-full-width">
+      <h2>Full Name</h2>
+      <input
+        [(ngModel)]="fullname"
+        type="text"
+        matInput
+        [formControl]="fullnameFormControl"
+        placeholder="Jane Doe"
+      />
+
+      <!-- @if (emailFormControl.hasError('required')) { -->
+      <mat-error *ngIf="fullnameFormControl.hasError('required')"
+        >Fullname is <strong>required</strong></mat-error
+      >
+    </mat-form-field>
+
+    <!-- username-->
+    <mat-form-field class="example-full-width">
+      <h2>username</h2>
+      <input
+        [(ngModel)]="username"
+        type="text"
+        matInput
+        [formControl]="usernameFormControl"
+      />
+
+      <!-- @if (emailFormControl.hasError('required')) { -->
+      <mat-error *ngIf="usernameFormControl.hasError('required')"
+        >Username is <strong>required</strong></mat-error
+      >
+    </mat-form-field>
+
+    <!-- password below-->
+    <mat-form-field class="example-full-width">
+      <h2>Password</h2>
+      <input
+        [(ngModel)]="password"
+        type="password"
+        matInput
+        [formControl]="passwordFormControl"
+      />
+
+      <!-- @if (emailFormControl.hasError('required')) { -->
+      <mat-error *ngIf="passwordFormControl.hasError('required')"
+        >Password is <strong>required</strong></mat-error
+      >
+    </mat-form-field>
+  </form>
+
+  <mat-card-content> </mat-card-content>
+  <mat-card-actions>
+    <button
+      class="button"
+      [disabled]="
+        username.length == 0 ||
+        password.length == 0 ||
+        email.length == 0 ||
+        fullname.length == 0
+      "
+      mat-button
+      [ngStyle]="{
+          cursor: username.length != 0 && password.length != 0 ? 'pointer' : '',
+        }"
+      [ngClass]="{
+        'button-hover': username.length != 0 && password.length != 0
+      }"
+      (click)="Create()"
+    >
+      Create
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<!-- below is the sign up -->
+
+<mat-card class="signup-card">
+  <mat-card-header>
+    <!-- <mat-card-title>Actions Buttons</mat-card-title>
+      <mat-card-subtitle>Start</mat-card-subtitle> -->
+  </mat-card-header>
+  <mat-card-actions>
+    <!-- router link change the url to go to another view-->
+    <p>Have an account</p>
+    <button routerLink="" mat-button class="button">Login</button>
+  </mat-card-actions>
+</mat-card>
+<br />
