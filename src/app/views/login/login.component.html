@@ -55,6 +55,13 @@
       class="button"
       [disabled]="username.length == 0 || password.length == 0"
       mat-button
+      [ngStyle]="{
+        cursor: username.length != 0 && password.length != 0 ? 'pointer' : '',
+      }"
+      [ngClass]="{
+        'button-hover': username.length != 0 && password.length != 0
+      }"
+      (click)="login()"
     >
       Login
     </button>

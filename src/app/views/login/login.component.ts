@@ -27,4 +27,8 @@ export class LoginComponent {
   signUpCreate() {
     console.log('sign up clicked');
   }
+
+  login() {
+    console.log('login in');
+  }
 }
