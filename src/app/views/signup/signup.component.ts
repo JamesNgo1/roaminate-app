@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -23,6 +24,9 @@ export class SignupComponent {
 
   usernameFormControl = new FormControl('', [Validators.required]);
 
+  // Inject HttpClient in the constructor
+  constructor(private http: HttpClient) {}
+
   signUpCreate() {
     console.log('sign up clicked');
   }
@@ -33,6 +37,18 @@ export class SignupComponent {
     console.log(this.username);
     console.log(this.password);
     console.log(this.fullname);
-    console.log(this.email);
+
+
+     // Example GET request to a backend endpoint 'http://127.0.0.1:8000'
+     this.http.get<any>('http://127.0.0.1:8000').subscribe(
+      (response) => {
+        console.log('Response:', response);
+        // Handle the response here
+      },
+      (error) => {
+        console.error('Error:', error);
+        // Handle errors here
+      }
+    ); 
   }
 }
